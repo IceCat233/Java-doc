@@ -1,4 +1,4 @@
-# Java学习
+# JavaSE学习
 
 ## 静态 static修饰成员的特点
 
@@ -312,7 +312,7 @@ instanceof类型
 
 翻看Java源代码会有内部类，所以得了解，无知识盲区
 
-![image-20250321172536776](https://gitee.com/icecat2233/picture/raw/master/20250321172539305.png)
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250321172539305.png" alt="image-20250321172536776" style="zoom:67%;" />
 
 #### 内部类成员访问：
 
@@ -320,7 +320,7 @@ instanceof类型
 
 外部类中，访问内部类成员：需要创建对象访问，
 
-![image-20250321172717338](https://gitee.com/icecat2233/picture/raw/master/20250321172718684.png)
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250321172718684.png" alt="image-20250321172717338" style="zoom:50%;" />
 
 #### 为何要学习内部类？
 
@@ -328,10 +328,97 @@ instanceof类型
 
 例如：
 
-![image-20250321172953230](https://gitee.com/icecat2233/picture/raw/master/20250321172955117.png)
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250321172955117.png" alt="image-20250321172953230" style="zoom:50%;" />
 
 ### 静态内部类：了解
 
+static修饰的成员内部类
+
+创建对象格式：外部类名.内部类名 对象名 = new 外部类名.内部类对象();
+
+注意事项：静态只能访问静态 （原因：静态随着类的加载而加载）
+
 ### 局部内部类：了解
 
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250323155951948.png" alt="image-20250323155943078" style="zoom: 67%;" />
+
+鸡肋语法，不作赘述
+
 ### 匿名内部类：必须掌握！！
+
+一个特殊的局部内部类
+
+前提：存在一个接口或类
+
+格式：`new 类名 接口名(){}`
+
+好处：使代码更简洁，定义一个类的同时对其实例化。
+
+**什么时候用？**接口内部需要抽象方法很少时，使用匿名内部类较好
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250323162142551.png" alt="image-20250323162138953" style="zoom: 50%;" />
+
+## Lambda表达式
+
+JDK8版本后开始的一种新语法形式。
+
+作用：简化匿名内部类的代码写法
+
+格式：
+
+```java
+(重写方法的形参) -> {被重写方法的方法体代码}
+```
+
+注意Lambda表达式只适用于简化函数式接口的匿名内部类的写法形式
+
+####  函数式接口：内部抽象方法只有一个
+
+***若对于代码理解到位，则可以通过写完匿名内部类后，光标放到匿名内部类名字上alt+回车改变为Lambda形式***
+
+### Lambda表达式的省略形式：
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250323171041413.png" alt="image-20250323171039318" style="zoom:67%;" />
+
+### 一个例子演示Lambda写法 匿名内部类写法和实现类写法：
+
+```java
+public class Test1 {
+    public static void main(String[] args) {
+//        Lambda写法
+        useinter( i -> System.out.println("这里是Lambda表达式写法")); //完整写法  useinter( （int i) -> {System.out.println("这里是Lambda表达式写法");});
+        System.out.println("------------------------------");
+//        使用多态并在外部写实现类的方法
+        useinter(new im());
+        System.out.println("------------------------------");
+//        匿名内部类写法
+        useinter(new im(){
+            @Override
+            public void show(int i) {
+                System.out.println("这里是匿名内部类写法");
+            }
+        });
+    }
+    public static void useinter(inter i){
+        i.show(10);
+    }
+}
+interface inter{
+    void show(int i);
+}
+class im implements inter{
+
+    @Override
+    public void show(int i) {
+        System.out.println("这里是实现类写法");
+    }
+}
+
+```
+
+### Lambda表达式和匿名内部类区别：
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250323171617478.png" alt="image-20250323171615449" style="zoom: 50%;" />
+
+## 窗体，组件，事件：
+
