@@ -172,7 +172,7 @@ static：类名可调用static修饰的方法，对于抽象方法无意义
 
 可以通过子类进行访问
 
-4.抽象类的子类
+4.抽象类的子类	
 
 要么重写所有抽象方法，要么本身就是抽象类
 
@@ -421,4 +421,133 @@ class im implements inter{
 <img src="https://gitee.com/icecat2233/picture/raw/master/20250323171617478.png" alt="image-20250323171615449" style="zoom: 50%;" />
 
 ## 窗体，组件，事件：
+
+```java
+package com.icecat.frame;
+/*
+    .*意思补充，意为加载前者类下所有的包
+ */
+import javax.swing.*;
+
+public class FrameTest1 {
+    public static void main(String[] args) {
+//        创建窗体对象
+        JFrame frame = new JFrame();
+//        设置窗体尺寸
+        frame.setSize(1920,1080);
+//        设置窗体关闭模式，可以直接写数字1，2，3.WindowConstants.EXIT_ON_CLOSE=3，意思是关闭窗口同时关闭java虚拟机。如果不写默认为隐藏窗口
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        设置标题
+        frame.setTitle("猫瑾醒了吗丶到窗体一游");
+//        设置窗体可见  注意：一定要最后设置窗体可见，要让在此之前的图片按钮的功能加载好后最后展示窗体
+        frame.setVisible(true);
+    }
+}
+```
+
+效果展示：
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250324154900925.png" alt="image-20250324154858456" style="zoom:50%;" />
+
+### 窗体添加按钮：
+
+```java
+package com.icecat.frame;
+
+import javax.swing.*;
+/*
+JButton构造方法：
+         public JButton():创建一个空白按钮
+         public JButton(String text):创建一个带文本的按钮
+ */
+public class JbuttonTest1 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+//        设置按钮前需要先取消按钮默认布局
+        frame.setLayout(null);
+//        创建按钮对象
+        JButton btn = new JButton("不要点我");
+//        设置按钮位置以及大小
+        btn.setBounds(175,225,100,100);
+//        将按钮添加到窗体的（面板对象）中
+        frame.getContentPane().add(btn);
+        frame.setSize(400,500);
+        frame.setDefaultCloseOperation(3);
+        frame.setVisible(true);
+    }
+}
+```
+
+### 窗体添加图片，文字：
+
+```java
+package com.icecat.frame;
+
+import javax.swing.*;
+
+public class JlableTest1 {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setSize(1200,1000);
+        frame.setDefaultCloseOperation(3);
+        frame.setLayout(null);
+//        Jlable展示文本和图片  先创建Jlabel对象
+//        1.展示文本
+        JLabel jl1 = new JLabel("薇尔莉特");
+        jl1.setBounds(100,50,60,60);
+        frame.getContentPane().add(jl1);
+        JLabel jl2 = new JLabel("小鸟游六花");
+        jl2.setBounds(160,50,80,60);
+        frame.getContentPane().add(jl2);
+//        2，展示图像
+        JLabel jl1_1jpg = new JLabel(new ImageIcon("D:\\Develop\\Advanced-codes\\day09-codes\\src\\com\\icecat\\可愛い.jpg"));
+        jl1_1jpg.setBounds(100,110,690,690);
+        frame.getContentPane().add(jl1_1jpg);
+//          展示窗体
+        frame.setVisible(true);
+    }
+}
+```
+
+![image-20250324163631116](https://gitee.com/icecat2233/picture/raw/master/20250324163633329.png)
+
+### 事件监听：
+
+分为两个
+
+#### ActionListener:动作监听
+
+![image-20250324171058759](https://gitee.com/icecat2233/picture/raw/master/20250324171225177.png)
+
+#### KeyListener：键盘监听
+
+![image-20250324171222985](https://gitee.com/icecat2233/picture/raw/master/20250324171229810.png)
+
+#### 注意事项
+
+1：**其中键盘监听中：**
+
+如何确定键盘录入按键（ASCII码）
+
+并且第一个keyTyped方法不常用，因为有些方法监听不到
+
+2：**监听冲突问题**
+
+焦点：程序的注意力集中在了某一组件上
+
+注意：按钮组件比较特殊，创建好后就自动聚焦，但是并不需要，还可能会和键盘监听起冲突问题
+
+可以通过：`setFocusable(false)`来取消焦点
+
+![image-20250327162545003](https://gitee.com/icecat2233/picture/raw/master/20250327162557075.png)
+
+### 适配器设计模式
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250327165831119.png" alt="image-20250327163802452" style="zoom:67%;" />
+
+### 模板设计模式
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250327165828578.png" alt="image-20250327165742040" style="zoom:67%;" />
+
+**优势：已经定义了通用结构，使用者只需关心自己需要实现的功能即可**
 

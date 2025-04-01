@@ -4,6 +4,8 @@
 
 此文档目前仅记录了javaSE内容，较为基础，适合很初级的人去看，后续会继续提交更新的笔记，会持续更新
 
+java基础部分结束后，后续内容会一个重点一个文档的形式进行更新，最新为：常用api
+
 ![可愛い](https://gitee.com/icecat2233/picture/raw/master/20250321231214432.jpg)
 
-![image-20250321231558551](https://gitee.com/icecat2233/picture/raw/master/20250321231909450.png)
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250321231909450.png" alt="image-20250321231558551" style="zoom:67%;" />
