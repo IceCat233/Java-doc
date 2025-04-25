@@ -101,9 +101,143 @@ public static boolean equals(Object a, Object b) {
 ![image-20250404170313844](https://gitee.com/icecat2233/picture/raw/master/20250404170322675.png)
 
 1. 其中binarySearch()方法，给予的数组必须是排好序的。因为使用了二分法
+
 2. sort()方法中，对数组进行了默认升序排序，要进行其他顺序排序，需学习**红黑树**
 
+   
 
+## JDK7时间类
+
+### Date类
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250410163120955.png" alt="image-20250410163119332" style="zoom:67%;" />
+
+
+
+### SimpleDateFormat类：用于日期格式化
+
+**将Date日期转化为易懂的形式**  我个人理解为可以将这个类作为修饰Date日期对象的类。
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250410163252914.png" alt="image-20250410163250157" style="zoom:67%;" />
+
+
+
+如何使用
+
+其中在创建日期格式化对象时，可以使用代参构造方法传入pattern,修改格式，代表元素如下图
+
+```java
+        //创建了一个日期格式化对象，使用默认模式
+        SimpleDateFormat format = new SimpleDateFormat(parttern"");
+        //创建日期对象，封装此刻时间
+        Date date = new Date();
+        //将日期对象转换为字符串
+        String resul = format.format(date);
+        System.out.println(resul);
+```
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250410161300015.png" alt="image-20250410161244449" style="zoom: 67%;" />
+
+### Calendar类：
+
+表示一个时间的日历对象
+
+#### 如何获取对象
+
+`Calendar c = Calendar.getInstance();`
+
+##### 常见方法
+
+set 修改
+
+get 获取  **注意获取月份时要进行+1操作**    
+
+​                **获取星期时**
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250410174127785.png" alt="image-20250410174126335" style="zoom:67%;" />
+
+add 在原有基础上添加或减少
+
+##### 细节点：
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250410173853270.png" alt="image-20250410173852190" style="zoom:50%;" />
+
+##### 案例：
+
+```java
+//键盘录入一个字符串，判断今天是今年的第几天
+public class CalendarTest {
+    public static void main(String[] args) throws ParseException {
+        System.out.println("请输入你想要求的日期 格式\"xxxx年xx月xx日\"");
+        Scanner sc =new Scanner(System.in);
+        String input = sc.nextLine();
+
+        //使用SimpleDateFormat 将日期字符串转化为日期对象
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+        Date riqi = format.parse(input);
+        
+        //将日期对象转化为Calendar对象
+        Calendar c = Calendar.getInstance();
+        c.setTime(riqi);
+        
+        //使用get方法获取第几天
+        int day = c.get(Calendar.DAY_OF_YEAR);
+        System.out.println("今天是这一年的第"+day+"天");
+    }
+}
+```
+
+## JDK8版本后时间类（常用）
+
+### 日历类 LocalDateTime
+
+如何将字符串转化为日期对象：
+
+**注意：尽量将格式化中的MM月dd日等只写一个字符，要不然容易报错**
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250411171745728.png" alt="image-20250411171744338" style="zoom:80%;" />
+
+```Java
+LocalDate date = LocalDate.parse(birthday, DateTimeFormatter.ofPattern("yyyy年M月d日"));
+```
+
+如何格式化日期对象
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250411171614157.png" alt="image-20250411171612632" style="zoom: 80%;" />
+
+```java
+DateTimeFormatter.ofPattern("yyyy年M月d日")
+```
+
+#### 创建对象？
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250411163642595.png" alt="image-20250411163640532" style="zoom:50%;" />
+
+**LocalDate time举例  LocalTime  LocalDateTime三者方法一致**
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250411163543670.png" alt="image-20250411163541466" style="zoom:50%;" />
+
+#### 注意点：
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250411163358361.png" alt="image-20250411163349987" style="zoom: 50%;" />
+
+
+
+### instant时间戳类
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250411165138747.png" alt="image-20250411165137534" style="zoom:50%;" />
+
+### ZoneDateTime 带时区的时间对象
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250411165733292.png" alt="image-20250411165732086" style="zoom:50%;" />
+
+### Zoneld类(时区类)
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250411165031419.png" alt="image-20250411165030046" style="zoom:50%;" />
+
+### 时间中的工具类：ChronUnit
+
+<img src="https://gitee.com/icecat2233/picture/raw/master/20250411171007818.png" alt="image-20250411171004330" style="zoom: 67%;" />
 
 ## 基本算法：
 
